@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>Typing Game</title>
+        <link rel="stylesheet" href="Typing-Game.css">
+    </head>
+
+    <body>
+        <header>
+            <h1>타이핑하고 놀기</h1>
+            <p>이름 지정 → 이미지 등록 → 등록</p>
+        </header>
+
+        <main>
+            <h2>타닥타닥~</h2>
+            <section class="typing-game-area">
+                <div class="typing-game-output-area">
+                </div>
+
+                <div class="typing-game-input-area">
+                    <input class="typing-game-input" type="text" maxlength="100" placeholder="타닥타닥...">
+                    <button class="typing-game-input-btn">입력</button>
+                </div>
+
+                <div class="typing-game-setting-area">
+                    <button class="game-slot-reset-btn">이미지 리셋</button>
+                    <div>
+                        <label>타이핑 옵션: </label>
+                        <select class="typing-game-sound-effect">
+                            <option value="option-1" data-src="./source/sound/default-typing.mp3">1번</option>
+                            <option value="option-2" data-src="./source/sound/soft-typing.mp3">2번</option>
+                            <option value="option-3" data-src="./source/sound/hard-typing.mp3">3번</option>
+                            <option value="option-4" data-src="./source/sound/middle-typing.mp3">4번</option>
+                            <option value="option-5" data-src="./source/sound/quite-typing.mp3">5번</option>
+                            <option value="option-6" data-src="./source/sound/high-typing.mp3">6번</option>
+                        </select>
+                        <label> from Pixabay</label>
+
+                        <input class="typing-game-sound-effect-volume" type="range" min="0" max="1" step="0.01" value="0.3">
+                    </div>
+                </div>
+            </section>
+
+            <div class="character-toggle-area">
+                <h2>➕ 캐릭터 넣기</h2>
+                <button class="character-toggle-btn">열기</button>
+            </div>
+
+            <section class="typing-date-area">
+                <div class="typing-data-input-area">
+                    <div class="registration-area">
+                        <input class="registration-naming" type="text" maxlength="9" placeholder="이름을 적어주세요!">
+                        <button class="registration-btn">등록</button>
+                    </div>
+
+                    <div class="defalut">
+                        <label>기본 이미지:</label>
+                        <input class="defalut-typing-input" type="file" accept="image/*" placeholder="기본">       
+                    </div>
+
+                    <div class="left-up">
+                        <label>왼팔 들기:</label>
+                        <input class="left-up-typing-input" type="file" accept="image/*" placeholder="왼팔 들기">
+                    </div>
+
+                    <div class="right-up">
+                        <label>오른팔 들기:</label>
+                        <input class="right-up-typing-input" type="file" accept="image/*" placeholder="오른팔 들기">
+                    </div>
+
+                    <div class="exclamation">
+                        <label>[선택] 느낌표:</label>
+                        <input class="exclamation-typing-input" type="file" accept="image/*" placeholder="!">
+                    </div>
+
+                    <div class="question">
+                        <label>[선택] 물음표:</label>
+                        <input class="question-typing-input" type="file" accept="image/*" placeholder="?">
+                    </div>
+                </div>
+
+                <div class="save-data-area">
+                    <p>데이터들 보여주기</p>
+                </div>
+            </section>
+        </main>
+
+        <script src="Typing-Game.js"></script>
+        <!--
+        Sound Effect by DRAGON-STUDIO from Pixabay
+        https://pixabay.com/ko/sound-effects/search/%ED%83%80%EC%9D%B4%ED%95%91%20%EC%86%8C%EB%A6%AC/?content_type=authentic
+
+        Sound Effect by freesound_community from Pixabay
+        https://pixabay.com/ko/sound-effects/search/%ed%82%a4%eb%b3%b4%eb%93%9c%20%ed%81%b4%eb%a6%ad/
+
+        Sound Effect by DRAGON-STUDIO from Pixabay
+        https://pixabay.com/ko/sound-effects/search/%ed%82%a4%eb%b3%b4%eb%93%9c%20%ed%81%b4%eb%a6%ad/
+
+        Sound Effect by Universfield from Pixabay
+        https://pixabay.com/ko/sound-effects/search/%ED%82%A4%EB%B3%B4%EB%93%9C%20%ED%81%B4%EB%A6%AD/?pagi=4
+
+        Sound Effect by Lesiakower from Pixabay
+        https://pixabay.com/ko/sound-effects/search/%ED%82%A4%EB%B3%B4%EB%93%9C%20%ED%81%B4%EB%A6%AD/?pagi=6
+
+        Sound Effect by Universfield from Pixabay
+        https://pixabay.com/ko/sound-effects/search/%ec%bb%b4%ed%93%a8%ed%84%b0%20%ed%81%b4%eb%a6%ad/
+        -->
+    </body>
+</html>

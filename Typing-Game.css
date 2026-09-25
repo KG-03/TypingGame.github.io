@@ -1,0 +1,340 @@
+header,
+h2 {
+    justify-content: center;
+    text-align: center;
+
+    padding-bottom: 10px;
+}
+
+body {
+    margin: 10px;
+}
+
+
+/*===== typing game area =====*/
+.typing-game-area {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.typing-game-output-area {
+    width: 950px;
+    height: auto;
+    min-height: 650px;
+    margin: 0 auto;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+
+    gap: 10px;
+
+    border-radius: 10px;
+
+    margin-bottom: 10px;
+
+    background: #dae3e7;
+}
+
+.typing-game-output-area img {
+    max-width: 100%;
+    height: auto;
+}
+
+/*.typing-game-output-grid-area {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.grid {
+    width: 150px;
+    height: 150px;
+    border: 1px solid black;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}*/
+
+.typing-game-input-area,
+.typing-game-setting-area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin-bottom: 10px;
+    gap: 10px;
+}
+
+.typing-game-setting-area {
+    flex-direction: column;
+}
+
+.typing-game-input {
+    resize: none;
+    width: 500px;
+    height: 30px;
+
+    text-align: center;
+}
+
+.game-slot-reset-btn {
+    width: 100px;
+    height: 50px;
+    border-radius: 10px;
+
+    background: #dae3e7;
+    border: none;
+}
+
+.game-slot-reset-btn:hover {
+    background: #c3d3da;
+}
+
+.character-toggle-area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 20px;
+}
+
+
+/*===== typing data area =====*/
+.typing-date-area {
+    display: none;
+}
+
+.typing-date-area.active {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.typing-data-input-area {
+    text-align: left;
+    margin-bottom: 10px;
+
+    font-size: 14px;
+}
+
+.registration-area,
+.defalut,
+.left-up,
+.right-up,
+.exclamation,
+.question,
+.save-data-area {
+    padding: 10px;
+    margin: 10px;
+    gap: 10px;
+
+    background: linear-gradient(to right, #dae3e7, #ade6d3);
+}
+
+.defalut,
+.left-up,
+.right-up,
+.exclamation,
+.question,
+.registration-area {
+    width: 450px;
+    height: 50px;
+    border-radius: 10px;
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.registration-naming {
+    width: 200px;
+    height: 30px;
+    border-radius: 10px;
+    border: none;
+    
+    background: #ffffff;
+}
+
+
+/*===== save data area =====*/
+.save-data-area {
+    width: 600px;
+    height: 400px;
+    border-radius: 10px;
+
+    display: flex;
+    
+    align-items: center;
+
+    overflow-x: scroll;
+    overflow-y: hidden;
+}
+
+
+/*===== card area =====*/
+.save-card {
+    position: relative;
+    flex-shrink: 0;
+    width: 250px;
+    border-radius: 10px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    padding: 10px;
+
+    box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+}
+
+.save-card-label {
+    width: 100px;
+    height: 30px;
+    border-radius: 10px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    background: #82d8c5;
+}
+
+.save-card-btn-area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 10px;
+}
+
+.save-card-btn {
+    width: 50px;
+    border-radius: 10px;
+
+    background: white;
+    border: none;
+}
+
+.save-card-btn:hover {
+    background: #cccccc;
+}
+
+.mini-card {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 10;
+    transform: translate(-50%, -50%);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    padding: 10px;
+    gap: 10px;
+    border-radius: 10px;
+
+    background: rgba(255, 255, 255, 0.8);
+}
+
+.mini-card-btn-area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 10px;
+}
+
+/*===== toast area =====*/
+.toast-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+
+    display: flex;
+    flex-direction: column;
+    gap:10px;
+}
+
+.toast {
+    min-width: 250px;
+    padding: 16px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+    background-color: #333;
+    color: #fff;
+
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.toast-restore-btn {
+    margin-left: 10px;
+
+    border: none;
+    border-radius: 5px;
+
+    background: #555;
+    color: #fff;
+}
+
+
+@media (max-width: 1000px) {
+    .typing-game-output-area {
+        width: auto;
+        height: auto;
+    }
+
+    .typing-date-area.active {
+        display: block;
+    }    
+
+    .defalut,
+    .left-up,
+    .right-up,
+    .exclamation,
+    .question,
+    .registration-area {
+        width: auto;
+
+        display: flex;
+        justify-content: center;
+    }
+
+    .save-data-area {
+        width: auto;
+        align-items: stretch;
+    }
+}
+
+@keyframes typingMove {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-7px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.typing-move {
+    animation: typingMove 0.2s ease-in-out;
+}
