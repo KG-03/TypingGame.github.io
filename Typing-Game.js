@@ -81,7 +81,12 @@ typingAudio.src = typingGameSoundEffect.selectedOptions[0].dataset.src;
 typingAudio.volume = typingGameSoundEffectVolume.value;
 
 let datasets = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
-datasets.forEach(dataset => { dataset.visible = false; });
+datasets.forEach(dataset => { 
+    dataset.visible = false;
+
+    if(!dataset.position) { dataset.position = { x: 0, y: 0 }; }
+});
+
 
 let currentToggleState = false;
 let currentTypingState = false;
@@ -153,6 +158,10 @@ characterToggleBtn.addEventListener("click", () => {
 });
 
 registrationBtn.addEventListener("click", () => {
+    if(datasets.length >= 5) {
+        TOAST.show("등록은 최대 5개까지 가능합니다!");
+        return;
+    }
     if(!isInputState()) {
         return;
     }
@@ -194,6 +203,10 @@ async function addDataset() {
         exclamation: exclamationFile ? await fileToBase64(exclamationFile) : "",
         question: questionFile ? await fileToBase64(questionFile) : "",
 
+        position: {
+            x: 0,
+            y: 0
+        },
         changeLR: false,
 
         createdAt: Date.now(),
@@ -358,6 +371,7 @@ function createDatasetCard(dataset) {
         useBtn.classList.add("save-card-btn");
         useBtn.textContent = "사용";
         useBtn.addEventListener("click", () => {
+            if(dataset.visible === true) return;
             if(currentImageNum >= MAX_IMAGE) return;
             currentImageNum++;
 
@@ -381,6 +395,7 @@ function createDatasetCard(dataset) {
     btnArea.append(useBtn, editBtn, deleteBtn);
 
     card.append(image, label, btnArea);
+    
     return card;
 }
 
@@ -395,12 +410,12 @@ function rendersaveDataArea() {
 function createGameCard(dataset) {
     const card = document.createElement("div");
     dataset.card = card;
+    card.classList.add("game-card");
 
     const image = document.createElement("img");
     image.src = dataset.default || "./source/error.png";
     image.alt = "캐릭터 등록 완료";
-    if(currentImageNum === 1) image.width = 800;
-    else image.width = 400;
+    image.width = 400;
     card.append(image);
 
     const delBtn = document.createElement("button");
@@ -413,6 +428,36 @@ function createGameCard(dataset) {
     delBtn.style.display = "none";
     card.append(delBtn);
 
+    card.style.left = `${dataset.position.x}px`;
+    card.style.top = `${dataset.position.y}px`;
+
+    card.addEventListener("mousedown", (event) => {
+        event.preventDefault();
+
+        const cardRect = card.getBoundingClientRect();
+        const offsetX = event.clientX - cardRect.left;
+        const offsetY = event.clientY - cardRect.top;
+
+        function moveCard(event) {
+            const areaRect = typingGameOutputArea.getBoundingClientRect();
+            const xRect = event.clientX - areaRect.left - offsetX;
+            const yRect = event.clientY - areaRect.top - offsetY;
+
+            card.style.left = `${xRect}px`;
+            card.style.top = `${yRect}px`;
+        }
+
+        function stopMove() {
+            dataset.position.x = parseFloat(card.style.left);
+            dataset.position.y = parseFloat(card.style.top);
+            document.removeEventListener("mousemove", moveCard);
+            document.removeEventListener("mouseup", stopMove);
+        }
+
+        document.addEventListener("mousemove", moveCard);
+        document.addEventListener("mouseup", stopMove);
+    });
+
     document.addEventListener("click", (event) => {
         if(event.target === image) {
             delBtn.style.display = "block";
@@ -422,6 +467,9 @@ function createGameCard(dataset) {
     });
 
     return card;
+}
+
+function moveGameCard(card) {
 }
 
 function settingGameArea() {
@@ -496,6 +544,14 @@ async function isVaildImageFile(event) {
     const file = event.target.files[0];
 
     if(!file) {
+        return false;
+    }
+
+    const maxSize = 1 * 1024 * 1024;
+
+    if(file.size > maxSize) {
+        TOAST.show("이미지는 1MB 이하만 사용할 수 있습니다!");
+        fileInput.value = "";
         return false;
     }
 
